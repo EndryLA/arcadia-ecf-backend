@@ -1,14 +1,14 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
  
-const comment = mongoose.Schema({
+const Comment = new mongoose.Schema({
     pseudo: {
-        name:String,
+        type:String,
         required:true,
     },
     comment : {
-        name: String,
+        type: String,
         required:true,
-    },
+    }
 })
 
-export default mongoose.model('comment',comment)
+export default mongoose.model('Comment',Comment)

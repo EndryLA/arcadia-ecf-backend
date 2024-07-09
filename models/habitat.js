@@ -1,6 +1,6 @@
-const mongoose = require('')
+import mongoose from 'mongoose'
 
-const habitat = mongoose.Schema({
+const Habitat = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -20,4 +20,4 @@ const habitat = mongoose.Schema({
 
 })
 
-export default mongoose.model('habitat',habitat)
+export default mongoose.model('Habitat',Habitat)

@@ -1,8 +1,9 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
-const animal = mongoose.Schema({
-    habitat: {
-        type: String,
+const Animal = new mongoose.Schema({
+    habitatId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Habitat',
         required: true,
     },
     race: {
@@ -17,10 +18,6 @@ const animal = mongoose.Schema({
         type: String,
         required: true,
     },
-    vetReport: {
-        type: String,
-        required: true,
-    },
 })
 
-export default mongoose.model('animal',animal)
+export default mongoose.model('Animal',Animal)

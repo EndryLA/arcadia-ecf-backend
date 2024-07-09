@@ -1,6 +1,6 @@
-mongoose = require('mongooe')
+import mongoose from 'mongoose'
 
-const service = mongoose.Schema({
+const Service = new mongoose.Schema({
     title : {
         type: String,
         required : true,
@@ -11,4 +11,4 @@ const service = mongoose.Schema({
     }
 })
 
-export default mongoose.model('service',service)
+export default mongoose.model('Service',Service)
