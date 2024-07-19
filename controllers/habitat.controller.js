@@ -15,7 +15,7 @@ export const getHabitats = async (req,res) => {
 export const getHabitat = async (req,res) => {
     try {
         const id = req.params.id
-        const habitat = await Habitat.findOne(id)
+        const habitat = await Habitat.findById(id)
         res.status(200).json(habitat)
     } catch (error) {
         res.status(500).json({message: error.message})
@@ -23,10 +23,11 @@ export const getHabitat = async (req,res) => {
 }
 
 export const createHabitat = async (req,res) => {
+    console.log(req.body)
     try {
-        const habitat = new animal(req.body)
-        const savedHabitat = await Habitat.save(habitat)
-        res.status(201).json(habitat)
+        const habitat = new Habitat(req.body)
+        const savedHabitat = await habitat.save()
+        res.status(201).json(savedHabitat)
     } catch (error) {
         res.status(500).json({message: error.message})
     }
@@ -35,8 +36,8 @@ export const createHabitat = async (req,res) => {
 export const updateHabitat = async (req,res) => {
     try {
         const id = req.params.id
-        const updatedHabitat = await Habitat.findByIdAndUpdate(id)
-        res.status(200).json(updateHabitat)
+        const updatedHabitat = await Habitat.findByIdAndUpdate(id,req.body)
+        res.status(200).json(updatedHabitat)
     } catch (error) {
         res.status(500).json({message : error.message})
     }

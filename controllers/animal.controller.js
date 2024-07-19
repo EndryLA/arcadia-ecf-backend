@@ -1,4 +1,4 @@
-import Animal from "../models/animal.js";
+import Animal from "../models/Animal.js";
 
 export const getAnimals = async (req,res) => {
     try {
@@ -31,7 +31,7 @@ export const createAnimal = async (req,res) => {
 export const updateAnimal = async (req,res) => {
     try {
         const id = req.params.id
-        const updatedAnimal = await Animal.findByIdAndUpdate(id)
+        const updatedAnimal = await Animal.findByIdAndUpdate(id,req.body)
         res.status(201).json(updatedAnimal)
     } catch (error) {
         res.status(500).json({message : error.message})
@@ -41,7 +41,7 @@ export const updateAnimal = async (req,res) => {
 export const deleteAnimal = async (req,res) => {
     try {
         const id = req.params.id
-        const deletedItem = await Animal.findByIdAndRemove(id)   
+        const deletedItem = await Animal.findByIdAndDelete(id)   
         res.status(201).json(deletedItem)
     } catch (error) {
         res.status(500).json({message : error.message})

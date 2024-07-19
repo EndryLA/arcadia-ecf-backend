@@ -22,7 +22,7 @@ export const getComment = async (req,res) => {
 export const deleteComment = async (req,res) => {
     try {
         const id = req.params.id
-        const deletedComment = await Comment.findByIdAndRemove(id)
+        const deletedComment = await Comment.findByIdAndDelete(id)
         res.status(200).json(deletedComment)
     } catch (error) {
         res.status(500).json({message: error.message})

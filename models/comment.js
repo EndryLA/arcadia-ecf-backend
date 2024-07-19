@@ -8,6 +8,10 @@ const Comment = new mongoose.Schema({
     comment : {
         type: String,
         required:true,
+    },
+    isValid: {
+        type:Boolean,
+        required:true
     }
 })
 

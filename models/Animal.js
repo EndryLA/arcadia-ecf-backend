@@ -16,8 +16,17 @@ const Animal = new mongoose.Schema({
     },
     state: {
         type: String,
-        required: true,
     },
+    image: {
+        type:String,
+        required:true
+    },
+    recommendedFood:{
+        type:String,
+    },
+    foodGrammage:{
+        type:String,
+    }
 })
 
 export default mongoose.model('Animal',Animal)

@@ -34,7 +34,7 @@ export const createVetReport = async (req, res) => {
 export const deleteVetReport = async (req, res) => {
     try {
         const id = req.params.id;
-        const deletedVetReport = await VeterinaryReport.findByIdAndRemove(id);
+        const deletedVetReport = await VeterinaryReport.findByIdAndDelete(id);
         res.status(200).json(deletedVetReport);
     } catch (error) {
         res.status(500).json({ message: error.message });

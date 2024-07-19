@@ -32,7 +32,7 @@ export const createService = async (req,res) => {
 export const deleteService = async (req,res) => {
     try {
         const id = req.params.id
-        const deletedService = await Service.findByIdAndRemove(id)
+        const deletedService = await Service.findByIdAndDelete(id)
         res.status(200).json(deletedService)
     } catch (error) {
         res.status(500).json({message: error.message})
