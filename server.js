@@ -11,6 +11,7 @@ import userRouter from './routes/userRoutes.js'
 import feedingReportRoutes from './routes/feedingReportRoutes.js'
 import multer from 'multer'
 import Image from './models/images.js'
+import mailerRouter from './routes/mailerRoutes.js'
 
 dotenv.config()
 
@@ -22,11 +23,6 @@ const corsOptions = {
     optionSuccessStatus: 200,
     
 }
-
-//multer config
-
-
-
 
 const connectDB = async () => {
     try {
@@ -57,11 +53,10 @@ app.use(function (req, res, next) {
 });
 
 
-
+/*  STORAGE CONTROL */
 
 const storage = multer.memoryStorage()
 const upload = multer({storage})
-
 
 
 const generateUniqueFilename = (originalName) => {
@@ -106,7 +101,7 @@ app.get('/api/images/download/:filename', async (req,res) => {
 })
 
 
-
+app.use('/api/contact',mailerRouter)
 app.use('/api/users',userRouter)
 app.use('/api/animals',animalRouter)
 app.use('/api/habitats',habitatRouter)
