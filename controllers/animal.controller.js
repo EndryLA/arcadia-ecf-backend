@@ -31,8 +31,9 @@ export const createAnimal = async (req,res) => {
 export const updateAnimal = async (req,res) => {
     try {
         const id = req.params.id
+        console.log(req.body)
         const updatedAnimal = await Animal.findByIdAndUpdate(id,req.body)
-        res.status(201).json(updatedAnimal)
+        res.status(200).json(updatedAnimal)
     } catch (error) {
         res.status(500).json({message : error.message})
     }
@@ -47,5 +48,27 @@ export const deleteAnimal = async (req,res) => {
         res.status(500).json({message : error.message})
     }
 }
+
+export const incrementVisit = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const animal = await Animal.findById(id);
+        
+        if (!animal) {
+            return res.status(404).json({ error: 'Animal not found' });
+        }
+
+        // Ensure visits is an integer
+        const visits = parseInt(animal.visits, 10);
+        animal.visits = isNaN(visits) ? 1 : visits + 1;
+        
+        const updatedAnimal = await animal.save();
+        
+        res.status(200).json({ updatedAnimal });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 
 export default getAnimals

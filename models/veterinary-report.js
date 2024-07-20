@@ -18,6 +18,7 @@ const VeterinaryReport = new mongoose.Schema({
         ref: 'Animal',
         required:true,
     },
+    
 })
 
 export default mongoose.model('VeterinaryReport',VeterinaryReport)

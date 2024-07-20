@@ -60,6 +60,8 @@ export const updateUser = async (req,res) => {
         const id = req.params.id
         const body = req.body
         const updatedUser = await User.findByIdAndUpdate(id,body)
+        console.log(updatedUser)
+
         res.status(200).json(updatedUser)
     } catch (error) {
         res.status(500).json({message: error.message})
@@ -87,7 +89,9 @@ export const loginUser = async (req,res,next) => {
         }
 
         const token = jwt.sign(
-            {userId : user._id},    
+            {userId : user._id,
+             userRole : user.role,
+            },    
             process.env.AUTH_TOKEN,
             {expiresIn: '24h'},
         )

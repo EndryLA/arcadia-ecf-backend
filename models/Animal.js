@@ -26,6 +26,9 @@ const Animal = new mongoose.Schema({
     },
     foodGrammage:{
         type:String,
+    },
+    visits:{
+        type:String,
     }
 })
 

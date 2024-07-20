@@ -15,15 +15,6 @@ import mailerRouter from './routes/mailerRoutes.js'
 
 dotenv.config()
 
-
-// Cors options 
-const corsOptions = {
-    origin: '*',
-    credentials: true,
-    optionSuccessStatus: 200,
-    
-}
-
 const connectDB = async () => {
     try {
         await mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}.mongodb.net/?retryWrites=true&w=majority&appName=mern-test`, {
@@ -36,6 +27,15 @@ const connectDB = async () => {
 }
 
 connectDB()
+
+// Cors options 
+const corsOptions = {
+    origin: '*',
+    credentials: true,
+    optionSuccessStatus: 200,
+    
+}
+
 
 
 const app = express()
@@ -99,6 +99,16 @@ app.get('/api/images/download/:filename', async (req,res) => {
         res.status(500).json({ message: 'Error retrieving file', error });
       }
 })
+
+
+
+
+
+
+
+
+
+
 
 
 app.use('/api/contact',mailerRouter)

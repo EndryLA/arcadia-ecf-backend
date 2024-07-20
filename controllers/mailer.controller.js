@@ -28,7 +28,6 @@ export const sendMail = (req,res) => {
                 res.status(500).json({error})
             } else {
                 res.status(200).json({info})
-                console.log('email sent succesfully')
             }
         })
 
