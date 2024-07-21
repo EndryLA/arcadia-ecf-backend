@@ -12,6 +12,7 @@ import feedingReportRoutes from './routes/feedingReportRoutes.js'
 import multer from 'multer'
 import Image from './models/images.js'
 import mailerRouter from './routes/mailerRoutes.js'
+import scheduleRouter from './routes/scheduleRoutes.js'
 
 dotenv.config()
 
@@ -85,6 +86,17 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
 });
 
 
+app.get('/api/images/:filename', async (req, res) => {
+    try {
+        const filename = req.params.filename
+        const image = await Image.find({filename: filename});
+        res.status(200).json(image);
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving images', error });
+    }
+});
+
+
 app.get('/api/images/download/:filename', async (req,res) => {
     try {
         const image = await Image.findOne({ filename: req.params.filename });
@@ -110,7 +122,7 @@ app.get('/api/images/download/:filename', async (req,res) => {
 
 
 
-
+app.use('/api/schedule',scheduleRouter)
 app.use('/api/contact',mailerRouter)
 app.use('/api/users',userRouter)
 app.use('/api/animals',animalRouter)

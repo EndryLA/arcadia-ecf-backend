@@ -11,7 +11,6 @@ const authenticate = (req,res,next) => {
     }
     try {
         const decoded = jwt.verify(token, process.env.AUTH_TOKEN)
-        console.log(decoded)
         req.user = decoded;
         next()
     } catch (error) {
@@ -21,7 +20,6 @@ const authenticate = (req,res,next) => {
 
 const roleAuthorization = (roles) => {
     return (req, res, next) => {       
-        console.log('token :',req.headers.authorization)
         const token = req.headers.authorization.split(' ')[1];
         if (!token) {
             return res.status(401).json({ message: 'Accès refusé' });

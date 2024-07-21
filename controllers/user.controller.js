@@ -8,7 +8,7 @@ const saltRounds = 10
 
 export const getUsers = async (req,res) => {
     try {
-        const users = await User.find()
+        const users = await User.find({ role: { $ne: 'admin' }})
         res.status(200).json(users)
     } catch (error) {
         res.status(500).json({message : error.message})
