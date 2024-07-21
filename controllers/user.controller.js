@@ -70,21 +70,21 @@ export const updateUser = async (req,res) => {
 
 export const loginUser = async (req,res,next) => {
     try {
-        const email = req.body.email
+        const username = req.body.username
         const password = req.body.password
 
-        const user = await User.findOne({email})
+        const user = await User.findOne({username})
         console.log(user)
 
         if (!user) {
            console.error('error point 1')
-           return res.status(401).json({message: 'Adresse mail ou mot de passe invalide'})
+           return res.status(401).json({message: 'Adresse mail invalide'})
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
             console.error('error point 2')
-            return res.status(401).json({message: 'Adresse mail ou mot de passe invalide'})
+            return res.status(401).json({message: 'mot de passe invalide'})
             
         }
 

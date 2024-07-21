@@ -16,8 +16,8 @@ export const sendMail = (req,res) => {
     })
 
     const mailOptions = {
-        from:email,
-        to:process.env.EMAIL_USER,
+        from:process.env.EMAIL_USER,
+        to:email,
         subject:`Contact Zoo Arcadia - ${firstname} ${lastname}`,
         text:message
     }
