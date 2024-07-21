@@ -58,7 +58,6 @@ export const incrementVisit = async (req, res) => {
             return res.status(404).json({ error: 'Animal not found' });
         }
 
-        // Ensure visits is an integer
         const visits = parseInt(animal.visits, 10);
         animal.visits = isNaN(visits) ? 1 : visits + 1;
         

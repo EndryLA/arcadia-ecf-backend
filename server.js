@@ -45,6 +45,8 @@ app.use(express.json())
 
 app.use(cors(corsOptions));
 
+app.use(helmet())
+
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Headers',"Origin, Authorization, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version");
