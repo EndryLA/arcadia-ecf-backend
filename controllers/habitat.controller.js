@@ -22,7 +22,13 @@ export const getHabitat = async (req,res) => {
     }
 }
 
-export const createHabitat = async (req,res) => {
+/* export const createHabitat =
+[body('name').isString().trim().escape(),
+body('description').isString().trim().escape(),
+body('commentaire').isString().trim().escape(),
+body('image').isString().trim().escape(),
+validate,
+async (req,res) => {
     console.log(req.body)
     try {
         const habitat = new Habitat(req.body)
@@ -32,6 +38,18 @@ export const createHabitat = async (req,res) => {
         res.status(500).json({message: error.message})
     }
 }
+] */
+
+ export const createHabitat = async (req,res) => {
+    console.log(req.body)
+    try {
+        const habitat = new Habitat(req.body)
+        const savedHabitat = await habitat.save()
+        res.status(201).json(savedHabitat)
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+} 
 
 export const updateHabitat = async (req,res) => {
     try {

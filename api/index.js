@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import multer from 'multer';
 import Image from '../models/images.js';
+import helmet from 'helmet'
 
 import mailerRouter from './routes/mailerRoutes.js'
 import scheduleRouter from './routes/scheduleRoutes.js'
@@ -32,8 +33,17 @@ const connectDB = async () => {
 connectDB();
 
 const app = express();
+
+const fileFilter = (req, file, cb) => {
+    const allowedTypes = ['image/jpeg', 'image/webp', 'image/png', 'image/jpg'];
+    if (allowedTypes.includes(file.mimetype)) {
+        cb(null, true);
+    } else {
+        cb(new Error('Invalid file type. Only jpeg, webp, png, and jpg are allowed.'));
+    }
+};
 const storage = multer.memoryStorage();
-const upload = multer({ storage });
+const upload = multer({ storage, fileFilter });
 
 const generateUniqueFilename = (originalName) => {
     const timestamp = Date.now();
@@ -48,7 +58,18 @@ app.use(cors({
     credentials: true,
     optionSuccessStatus: 200,
 }));
-
+app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          "defaultSrc": ["http://localhost:5173"],
+          "imgSrc": ["http://localhost:5173"],
+        },
+        
+      },
+      crossOriginResourcePolicy: {policy:'cross-origin'}
+    }),
+  );
 
 
 app.get('/', (req, res) => res.send('route de test !'));

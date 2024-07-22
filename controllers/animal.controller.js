@@ -37,7 +37,7 @@ export const createAnimal = [
         const savedAnimal = await animal.save()
         res.status(201).json(savedAnimal)
     } catch (error) {
-        res.status(400).json({message : error.message})
+        res.status(500).json({message : error.message})
     }
 }] 
 
