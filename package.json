@@ -2,7 +2,7 @@
   "name": "arcadia-ecf-backend",
   "version": "1.0.0",
   "description": "Backend for Arcadia ECF project",
-  "main": "./api/index.js",
+  "main": "api/index.js",
   "type": "module",
   "scripts": {
     "start": "node api/index.js",

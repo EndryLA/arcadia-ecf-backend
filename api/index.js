@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import multer from 'multer';
-import Image from '../models/images.js'; // Adjust the path if necessary
+import Image from '../models/images.js';
 
 import mailerRouter from '../routes/mailerRoutes.js'
 import scheduleRouter from '../routes/scheduleRoutes.js'
@@ -49,6 +49,19 @@ app.use(cors({
     optionSuccessStatus: 200,
 }));
 
+
+
+app.get('/', (req, res) => res.send('route de test !'));
+app.use('/api/schedule',scheduleRouter)
+app.use('/api/contact',mailerRouter)
+app.use('/api/users',userRouter)
+app.use('/api/animals',animalRouter)
+app.use('/api/habitats',habitatRouter)
+app.use('/api/services',serviceRouter)
+app.use('/api/comments',commentRouter)
+app.use('/api/veterinary',vetReportRouter)
+app.use('/api/feed',feedingReportRoutes)
+
 app.post('/api/upload', upload.single('image'), async (req, res) => {
     try {
         const { originalname, mimetype, buffer } = req.file;
@@ -87,23 +100,15 @@ app.get('/api/images/download/:filename', async (req, res) => {
     }
 });
 
-app.get('/', (req, res) => res.send('route de test !'));
-app.use('/api/schedule',scheduleRouter)
-app.use('/api/contact',mailerRouter)
-app.use('/api/users',userRouter)
-app.use('/api/animals',animalRouter)
-app.use('/api/habitats',habitatRouter)
-app.use('/api/services',serviceRouter)
-app.use('/api/comments',commentRouter)
-app.use('/api/veterinary',vetReportRouter)
-app.use('/api/feed',feedingReportRoutes)
+app.listen(3000,() => {
+    console.log('connecté au serveur express')
+})
 
-
-export default (req, res) => {
+/* export default (req, res) => {
     return new Promise((resolve, reject) => {
         app(req, res, (err) => {
             if (err) reject(err);
             else resolve();
         });
     });
-};
+}; */
