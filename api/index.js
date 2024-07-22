@@ -100,15 +100,15 @@ app.get('/api/images/download/:filename', async (req, res) => {
     }
 });
 
-app.listen(3000,() => {
+app.listen(3001,() => {
     console.log('connecté au serveur express')
 })
 
-/* export default (req, res) => {
+export default (req, res) => {
     return new Promise((resolve, reject) => {
         app(req, res, (err) => {
             if (err) reject(err);
             else resolve();
         });
     });
-}; */
+};
