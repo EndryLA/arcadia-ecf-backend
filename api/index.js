@@ -5,15 +5,15 @@ import mongoose from 'mongoose';
 import multer from 'multer';
 import Image from '../models/images.js';
 
-import mailerRouter from '../routes/mailerRoutes.js'
-import scheduleRouter from '../routes/scheduleRoutes.js'
-import animalRouter from '../routes/animalRoutes.js'
-import habitatRouter from '../routes/habitatsRoutes.js'
-import serviceRouter from '../routes/serviceRoutes.js'
-import commentRouter from '../routes/commentRoutes.js'
-import vetReportRouter from '../routes/vetReportRoutes.js'
-import userRouter from '../routes/userRoutes.js'
-import feedingReportRoutes from '../routes/feedingReportRoutes.js'
+import mailerRouter from './routes/mailerRoutes.js'
+import scheduleRouter from './routes/scheduleRoutes.js'
+import animalRouter from './routes/animalRoutes.js'
+import habitatRouter from './routes/habitatsRoutes.js'
+import serviceRouter from './routes/serviceRoutes.js'
+import commentRouter from './routes/commentRoutes.js'
+import vetReportRouter from './routes/vetReportRoutes.js'
+import userRouter from './routes/userRoutes.js'
+import feedingReportRoutes from './routes/feedingReportRoutes.js'
 
 
 
@@ -100,7 +100,7 @@ app.get('/api/images/download/:filename', async (req, res) => {
     }
 });
 
-app.listen(3001,() => {
+app.listen(3000,() => {
     console.log('connecté au serveur express')
 })
 

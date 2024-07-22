@@ -1,5 +1,5 @@
 import express from 'express'
-import {getHabitats, getHabitat, deleteHabitat, updateHabitat, createHabitat } from '../controllers/habitat.controller.js'
+import {getHabitats, getHabitat, deleteHabitat, updateHabitat, createHabitat } from '../../controllers/habitat.controller.js'
 import { authenticateAdmin } from '../middleware/authenticate.js'
 
 const habitatRouter = express.Router()

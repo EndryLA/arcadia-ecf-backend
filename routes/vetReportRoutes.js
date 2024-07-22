@@ -1,5 +1,5 @@
 import express from 'express'
-import { getVetReports, getVetReport, deleteVetReport, updateVetReport, createVetReport } from '../controllers/vetReport.controller.js'
+import { getVetReports, getVetReport, deleteVetReport, updateVetReport, createVetReport } from '../../controllers/vetReport.controller.js'
 import { authenticateVeterinary } from '../middleware/authenticate.js'
 const vetReportRouter = express.Router()
 

@@ -1,5 +1,5 @@
 import express from 'express'
-import { createSchedule, getSchedule, updateSchedule } from '../controllers/schedule.controller.js'
+import { createSchedule, getSchedule, updateSchedule } from '../../controllers/schedule.controller.js'
 import {authenticateAdmin} from '../middleware/authenticate.js'
 
 const scheduleRouter = express.Router()

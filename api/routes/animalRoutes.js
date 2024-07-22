@@ -1,6 +1,6 @@
 import express from "express"
-import {getAnimal, getAnimals, createAnimal, updateAnimal, deleteAnimal, incrementVisit} from '../api/controllers/animal.controller.js'
-import authenticate, { authenticateAdmin } from "../api/middleware/authenticate.js"
+import {getAnimal, getAnimals, createAnimal, updateAnimal, deleteAnimal, incrementVisit} from '../../controllers/animal.controller.js'
+import authenticate, { authenticateAdmin } from "../../middleware/authenticate.js"
 const animalRouter = express.Router()
 
 animalRouter.get('/',getAnimals)

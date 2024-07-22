@@ -1,5 +1,5 @@
 import express from 'express'
-import { sendMail } from '../api/controllers/mailer.controller.js'
+import { sendMail } from '../../controllers/mailer.controller.js'
 
 const mailerRouter = express.Router()
 

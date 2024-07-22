@@ -12,7 +12,7 @@ export const getAnimals = async (req,res) => {
 }
 
 export const getAnimal = [
-    param('id').isMongoId().withMessage('ID d\'animal invalide'),
+    param('habitatId').isMongoId().withMessage('ID d\'animal invalide'),
     validate,
     async (req, res) => {
       try {

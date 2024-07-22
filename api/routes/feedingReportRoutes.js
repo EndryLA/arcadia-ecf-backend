@@ -1,6 +1,6 @@
 import express from 'express'
-import { getFeedingReport, getFeedingReports, deleteFeedingReport, updateFeedingReport, createFeedingReport } from "../api/controllers/feedingReport.controller.js";
-import { authenticateEmploye, authenticateAdmin } from '../api/middleware/authenticate.js';
+import { getFeedingReport, getFeedingReports, deleteFeedingReport, updateFeedingReport, createFeedingReport } from "../../controllers/feedingReport.controller.js";
+import { authenticateEmploye, authenticateAdmin } from '../../middleware/authenticate.js';
 
 const feedingReportRoutes = express.Router()
 

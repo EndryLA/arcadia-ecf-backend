@@ -1,6 +1,6 @@
 import express from 'express'
 import {getServices, getService, createService, updateService, deleteService} from '../controllers/service.controller.js'
-import service from '../models/service.js'
+import service from '../../models/service.js'
 import { authenticateMultipleRoles } from '../middleware/authenticate.js'
 
 const serviceRouter = express.Router()
