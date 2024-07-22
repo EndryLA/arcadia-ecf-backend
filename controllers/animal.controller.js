@@ -1,4 +1,6 @@
 import Animal from "../models/Animal.js";
+import {body, param , validationResult } from 'express-validator'
+import validate from "../middleware/validate.js";
 
 export const getAnimals = async (req,res) => {
     try {
@@ -9,24 +11,47 @@ export const getAnimals = async (req,res) => {
     }
 }
 
-export const getAnimal = async (req,res) => {
-    try {
-        const animal = await Animal.findById(req.params.id)
-        res.status(200).json(animal)
-    } catch (error) {
-        res.status(500).json({message: error.message})
+export const getAnimal = [
+    param('id').isMongoId().withMessage('ID d\'animal invalide'),
+    validate,
+    async (req, res) => {
+      try {
+        const animal = await Animal.findById(req.params.id);
+        res.status(200).json(animal);
+      } catch (error) {
+        res.status(500).json({ message: error.message });
+      }
     }
-}
+  ];
 
-export const createAnimal = async (req,res) => {
+export const createAnimal = [
+    body('habitatId').isMongoId().withMessage('Habitat Invalide').trim(),
+    body('name').isString().withMessage('Le nom doit être une chaîne de caractères').trim().escape(),
+    body('race').isString().withMessage('La race doit être une chaîne de caractères').trim().escape(),
+    body('state').isString().withMessage('L\'état doit être chaîne de caractères').trim().escape(),
+    validate, 
+    async (req,res) => {
+    
     try {
         const animal = new Animal(req.body)   
         const savedAnimal = await animal.save()
         res.status(201).json(savedAnimal)
     } catch (error) {
-        res.status(400).json({message :error.message})
+        res.status(400).json({message : error.message})
     }
-}
+}] 
+
+
+/* export const createAnimal = async (req,res) => { 
+    try {
+        const animal = new Animal(req.body)   
+        const savedAnimal = await animal.save()
+        res.status(201).json(savedAnimal)
+    } catch (error) {
+        res.status(400).json({message : error.message})
+    }
+} */
+
 
 export const updateAnimal = async (req,res) => {
     try {

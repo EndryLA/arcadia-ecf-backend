@@ -1,4 +1,6 @@
 import Comment from '../models/comment.js'
+import {body, param, validationResult} from 'express-validator'
+import validate from '../middleware/validate.js'
 
 export const getComments = async (req,res) => {
     try {
@@ -40,14 +42,26 @@ export const updateComment = async (req,res) => {
     }
 }
 
-export const createComment = async (req,res) => {
-    try {
-        const comment = new Comment(req.body)
-        const createdComment = await comment.save()
-        res.status(201).json(createdComment)
-    } catch (error) {
-        res.status(500).json({message: error.message})
+
+[body('pseudo').isString().trim().escape(),
+body('comment').isString().trim().escape(),
+validate
+]
+
+export const createComment = [
+    body('pseudo').isString().trim().escape(),
+    body('comment').isString().trim().escape(),
+    validate,
+    
+    async (req,res) => {
+        try {
+            const comment = new Comment(req.body)
+            const createdComment = await comment.save()
+            res.status(201).json(createdComment)
+        } catch (error) {
+            res.status(500).json({message: error.message})
+        }
     }
-}
+] 
 
 export default getComments

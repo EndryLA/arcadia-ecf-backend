@@ -13,6 +13,7 @@ import multer from 'multer'
 import Image from './models/images.js'
 import mailerRouter from './routes/mailerRoutes.js'
 import scheduleRouter from './routes/scheduleRoutes.js'
+import helmet from 'helmet'
 
 dotenv.config()
 
@@ -45,7 +46,6 @@ app.use(express.json())
 
 app.use(cors(corsOptions));
 
-app.use(helmet())
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
