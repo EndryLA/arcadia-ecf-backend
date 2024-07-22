@@ -123,7 +123,7 @@ app.get('/api/images/download/:filename', async (req,res) => {
 
 
 
-
+app.get('/', (req,res) => res.send('message !'))
 app.use('/api/schedule',scheduleRouter)
 app.use('/api/contact',mailerRouter)
 app.use('/api/users',userRouter)
